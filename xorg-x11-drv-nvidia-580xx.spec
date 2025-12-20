@@ -20,10 +20,10 @@
 %global        __brp_ldconfig %{nil}
 %undefine      _missing_build_ids_terminate_build
 
-Name:            xorg-x11-drv-nvidia
+Name:            xorg-x11-drv-%{_nvidia_serie}
 Epoch:           3
 Version:         580.119.02
-Release:         1%{?dist}
+Release:         2%{?dist}
 Summary:         NVIDIA's 580xx proprietary display driver for NVIDIA graphic cards
 
 License:         Redistributable, no modification permitted
@@ -33,7 +33,7 @@ Source1:         https://us.download.nvidia.com/XFree86/aarch64/%{version}/NVIDI
 Source5:         alternate-install-present
 Source6:         nvidia.conf
 Source7:         80-nvidia-pm.rules
-Source8:         xorg-x11-drv-nvidia.metainfo.xml
+Source8:         xorg-x11-drv-%{_nvidia_serie}.metainfo.xml
 Source9:         parse-supported-gpus.py
 Source10:        parse-kernel-noopen-gpus.py
 Source11:        nvidia-uvm.conf
@@ -390,8 +390,8 @@ touch %{buildroot}%{_sysconfdir}/X11/xorg.conf.d/nvidia.conf
 mkdir -p %{buildroot}%{_sysconfdir}/nvidia/
 
 #Install the nvidia kernel modules sources archive
-mkdir -p %{buildroot}%{_datadir}/nvidia-kmod-%{version}/
-tar Jcf %{buildroot}%{_datadir}/nvidia-kmod-%{version}/nvidia-kmod-%{version}-%{_arch}.tar.xz kernel kernel-open supported-gpus
+mkdir -p %{buildroot}%{_datadir}/%{_nvidia_serie}-kmod-%{version}/
+tar Jcf %{buildroot}%{_datadir}/%{_nvidia_serie}-kmod-%{version}/%{_nvidia_serie}-kmod-%{version}-%{_arch}.tar.xz kernel kernel-open supported-gpus
 
 #RPM Macros support
 mkdir -p %{buildroot}%{rpmmacrodir}
@@ -401,8 +401,8 @@ cat > %{buildroot}%{rpmmacrodir}/macros.%{name}-kmodsrc<< EOF
 EOF
 
 # install AppData and add modalias provides
-install -D -p -m 0644 %{SOURCE8} %{buildroot}%{_metainfodir}/xorg-x11-drv-nvidia.metainfo.xml
-%{SOURCE9} supported-gpus/supported-gpus.json | xargs appstream-util add-provide %{buildroot}%{_metainfodir}/xorg-x11-drv-nvidia.metainfo.xml modalias
+install -D -p -m 0644 %{SOURCE8} %{buildroot}%{_metainfodir}/xorg-x11-drv-%{_nvidia_serie}.metainfo.xml
+%{SOURCE9} supported-gpus/supported-gpus.json | xargs appstream-util add-provide %{buildroot}%{_metainfodir}/xorg-x11-drv-%{_nvidia_serie}.metainfo.xml modalias
 mkdir -p %{buildroot}%{_datadir}/pixmaps
 install -pm 0644 nvidia-settings.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
@@ -497,9 +497,9 @@ fi ||:
 %{_datadir}/nvidia/nvoptix.bin
 
 %files kmodsrc
-%dir %{_datadir}/nvidia-kmod-%{version}
+%dir %{_datadir}/%{_nvidia_serie}-kmod-%{version}
 %{rpmmacrodir}/macros.%{name}-kmodsrc
-%{_datadir}/nvidia-kmod-%{version}/nvidia-kmod-%{version}-%{_arch}.tar.xz
+%{_datadir}/%{_nvidia_serie}-kmod-%{version}/%{_nvidia_serie}-kmod-%{version}-%{_arch}.tar.xz
 %endif
 
 %ldconfig_scriptlets libs
@@ -642,6 +642,9 @@ fi ||:
 %endif
 
 %changelog
+* Sat Dec 20 2025 Sérgio Basto <sergio@serjux.com> - 3:580.119.02-2
+- Initial commit for xorg-x11-drv-nvidia-580xx
+
 * Fri Dec 12 2025 Leigh Scott <leigh123linux@gmail.com> - 3:580.119.02-1
 - Update to 580.119.02 release
 

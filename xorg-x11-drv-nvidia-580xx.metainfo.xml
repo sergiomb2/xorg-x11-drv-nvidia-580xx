@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2016 Richard Hughes <richard@hughsie.com> -->
 <component type="driver">
-  <id>xorg-x11-drv-nvidia</id>
-  <name>NVIDIA Linux Graphics Driver</name>
+  <id>xorg-x11-drv-nvidia-580xx</id>
+  <name>NVIDIA 580xx Linux Graphics Driver</name>
   <summary>Accelerated Linux Graphics Driver</summary>
   <description>
     <p>
@@ -18,7 +18,7 @@
     </p>
   </description>
   <url type="homepage">http://www.nvidia.com/</url>
-  <icon type="local" width="128" height="128">/usr/share/pixmaps/xorg-x11-drv-nvidia.png</icon>
+  <icon type="local" width="128" height="128">/usr/share/pixmaps/xorg-x11-drv-nvidia-580xx.png</icon>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>LicenseRef-proprietary:NVIDIA</project_license>
   <developer_name>NVIDIA Corporation</developer_name>
@@ -45,7 +45,7 @@
     <keyword>vp9</keyword>
   </keywords>
   <url type="bugtracker">https://bugzilla.rpmfusion.org</url>
-  <update_contact>xorg-x11-drv-nvidia-owner@rpmfusion.org</update_contact>
+  <update_contact>xorg-x11-drv-nvidia-580xx-owner@rpmfusion.org</update_contact>
   <custom>
     <value key="GnomeSoftware::requires-akmods-key">True</value>
   </custom>
