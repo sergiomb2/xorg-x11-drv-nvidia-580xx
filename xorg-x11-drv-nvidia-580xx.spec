@@ -75,6 +75,7 @@ Provides:        %{_nvidia_serie}-open-kmod-common = %{?epoch}:%{version}
 Conflicts:       xorg-x11-drv-nvidia-340xx
 Conflicts:       xorg-x11-drv-nvidia-390xx
 Conflicts:       xorg-x11-drv-nvidia-470xx
+Conflicts:       xorg-x11-drv-nvidia
 
 %global         __provides_exclude ^(lib.*GL.*\\.so.*)$
 %global         __requires_exclude ^libglxserver_nvidia.so|^(lib.*GL.*\\.so.*)$
@@ -453,7 +454,7 @@ if [ "$1" -eq "1" ]; then
 %endif
 fi || :
 
-%triggerun -- xorg-x11-drv-nvidia < 3:575.57.08-2
+%triggerun -- xorg-x11-drv-nvidia < 3:580.119.02-2
 %{_grubby} --args='%{_dracutopts}' &>/dev/null || :
 
 %preun
