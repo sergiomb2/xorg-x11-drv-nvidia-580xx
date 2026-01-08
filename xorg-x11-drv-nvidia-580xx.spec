@@ -60,8 +60,8 @@ BuildRequires:    libappstream-glib >= 0.6.3
 # nvidia-bug-report.sh requires needed to provide extra info
 Suggests:         acpica-tools
 Suggests:         vulkan-tools
-Recommends:       %{name}-cuda-libs%{?_isa} = %{?epoch}:%{version}-%{release}
-Recommends:       %{name}-power%{?_isa} = %{?epoch}:%{version}-%{release}
+Recommends:       %{name}-cuda-libs%{?_isa} = %{?epoch}:%{version}
+Recommends:       %{name}-power%{?_isa} = %{?epoch}:%{version}
 Requires:         (%{name}-xorg-libs%{?_isa} = %{?epoch}:%{version}-%{release} if xorg-x11-server-Xorg%{?_isa})
 Requires:         (%{name}-cuda = %{?epoch}:%{version}-%{release} if cuda)
 Requires:         (%{name}-cuda = %{?epoch}:%{version}-%{release} if cuda-toolkit)
